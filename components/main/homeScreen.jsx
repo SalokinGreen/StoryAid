@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Colors from "../UI/Colors";
 import MenuItem from "../UI/MenuItem";
-
+import generateDetails from "../../utils/characterGenerator/generateDetails";
 const DATA = [
   {
     title: "Rolls",
@@ -38,38 +38,17 @@ const DATA = [
     id: 2,
     data: [
       {
-        text: "Characters",
-        emoji: "👤",
-        onPress: () => {
-          console.log("NPCs pressed");
-        },
-      },
-      {
-        text: "Locations",
-        emoji: "🏰",
-        onPress: () => {
-          console.log("Locations pressed");
-        },
-      },
-      {
-        text: "Items",
-        emoji: "🗡️",
-        onPress: () => {
-          console.log("Items pressed");
-        },
-      },
-      {
-        text: "Monsters",
-        emoji: "👹",
-        onPress: () => {
-          console.log("Monsters pressed");
-        },
-      },
-      {
-        text: "Bestiary",
+        text: "Lorebook",
         emoji: "📖",
         onPress: () => {
-          console.log("Bestiary pressed");
+          console.log("Lorebook pressed");
+        },
+      },
+      {
+        text: "Modern Character Generator",
+        emoji: "👤",
+        onPress: () => {
+          console.log(generateDetails({ minAge: 18, maxAge: 100 }));
         },
       },
     ],

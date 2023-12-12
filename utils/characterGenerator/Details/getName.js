@@ -21441,4 +21441,4 @@ function getName(gender) {
     ? `${maleName} ${lastName}`
     : `${femaleName} ${lastName}`;
 }
-module.exports = getName;
+export default getName;

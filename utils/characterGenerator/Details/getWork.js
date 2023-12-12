@@ -919,4 +919,4 @@ const works = [
 function getWork() {
   return works[Math.floor(Math.random() * works.length)];
 }
-module.exports = getWork;
+export default getWork;

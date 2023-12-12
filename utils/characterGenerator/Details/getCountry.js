@@ -200,4 +200,4 @@ const countries = [
 function getCountry() {
   return countries[Math.floor(Math.random() * countries.length)];
 }
-module.exports = getCountry;
+export default getCountry;

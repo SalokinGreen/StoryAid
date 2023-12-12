@@ -1,10 +1,10 @@
 // Import functions from Details folder
-const getAttributes = require("./Details/getAttributes");
-const getAge = require("./Details/getAge");
-const getCountry = require("./Details/getCountry");
-const getName = require("./Details/getName");
-const getWork = require("./Details/getWork");
-const getMore = require("./Details/getMore");
+import getAttributes from "./Details/getAttributes";
+import getAge from "./Details/getAge";
+import getCountry from "./Details/getCountry";
+import getName from "./Details/getName";
+import getWork from "./Details/getWork";
+import getMore from "./Details/getMore";
 // Function to return json with those details
 function generateDetails(pref) {
   // generate gender 50/50
@@ -19,4 +19,4 @@ function generateDetails(pref) {
     ...getMore(),
   };
 }
-module.exports = generateDetails;
+export default generateDetails;

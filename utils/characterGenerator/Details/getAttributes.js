@@ -128,4 +128,4 @@ function getAttributes() {
 //     default:
 //       return "8:00am-20:00pm";
 //   }
-module.exports = getAttributes;
+export default getAttributes;

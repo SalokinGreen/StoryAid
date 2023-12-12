@@ -71,4 +71,4 @@ function getAge(min, max) {
 
   return age;
 }
-module.exports = getAge;
+export default getAge;

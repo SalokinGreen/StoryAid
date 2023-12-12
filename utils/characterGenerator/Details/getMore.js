@@ -1714,4 +1714,4 @@ function getMore() {
 
   return attributes;
 }
-module.exports = getMore;
+export default getMore;
