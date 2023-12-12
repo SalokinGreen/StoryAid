@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,8 @@ import {
 import Colors from "../UI/Colors";
 import MenuItem from "../UI/MenuItem";
 import generateDetails from "../../utils/characterGenerator/generateDetails";
+import Oracle from "../tabs/Oracle";
+import Header from "../UI/Header";
 const DATA = [
   {
     title: "Rolls",
@@ -19,16 +21,17 @@ const DATA = [
       {
         text: "Dice",
         emoji: "🎲",
-        onPress: () => {
-          console.log("Dice pressed");
-        },
+        page: 1,
       },
       {
         text: "Tables",
         emoji: "📜",
-        onPress: () => {
-          console.log("Tables pressed");
-        },
+        page: 2,
+      },
+      {
+        text: "Oracle",
+        emoji: "🔮",
+        page: 3,
       },
     ],
   },
@@ -40,16 +43,12 @@ const DATA = [
       {
         text: "Lorebook",
         emoji: "📖",
-        onPress: () => {
-          console.log("Lorebook pressed");
-        },
+        page: 4,
       },
       {
         text: "Modern Character Generator",
         emoji: "👤",
-        onPress: () => {
-          console.log(generateDetails({ minAge: 18, maxAge: 100 }));
-        },
+        page: 5,
       },
     ],
   },
@@ -61,9 +60,7 @@ const DATA = [
       {
         text: "Turn Tracker",
         emoji: "⏳",
-        onPress: () => {
-          console.log("Turn Tracker pressed");
-        },
+        page: 6,
       },
     ],
   },
@@ -71,37 +68,45 @@ const DATA = [
 
 const HomeScreen = () => {
   const [sections, setSections] = React.useState(DATA);
-
+  const [page, setPage] = useState(0);
   const toggleSection = (id) => {
     const newSections = [...sections];
     const index = newSections.findIndex((section) => section.id === id);
     newSections[index].open = !newSections[index].open;
     setSections(newSections);
   };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Story Aid</Text>
-      <SectionList
-        sections={sections}
-        keyExtractor={(item, index) => item + index}
-        renderItem={({ item, section }) => (
-          <MenuItem
-            text={item.text}
-            emoji={item.emoji}
-            onPress={item.onPress}
-            open={section.open}
-          />
-        )}
-        renderSectionHeader={({ section }) => (
-          <TouchableOpacity onPress={() => toggleSection(section.id)}>
-            <Text style={styles.header}>{section.title}</Text>
-          </TouchableOpacity>
-        )}
-        style={{ width: "100%" }}
-      />
-    </View>
-  );
+  if (page === 0) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Story Aid</Text>
+        <SectionList
+          sections={sections}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({ item, section }) => (
+            <MenuItem
+              text={item.text}
+              emoji={item.emoji}
+              onPress={() => setPage(item.page)}
+              open={section.open}
+            />
+          )}
+          renderSectionHeader={({ section }) => (
+            <TouchableOpacity onPress={() => toggleSection(section.id)}>
+              <Text style={styles.header}>{section.title}</Text>
+            </TouchableOpacity>
+          )}
+          style={{ width: "100%" }}
+        />
+      </View>
+    );
+  } else if (page === 3) {
+    return (
+      <View style={styles.container}>
+        <Header text="Oracle" emoji="🔮" onPress={() => setPage(0)} />
+        <Oracle />
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
